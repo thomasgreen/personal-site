@@ -114,10 +114,12 @@ function Profile() {
         </div>
         <Image
           src={ProfileImage}
-          width={400}
-          loading="eager"
+          width={640}
+          height={640}
           alt="Tom Green"
           className="rounded-3xl"
+          priority
+          placeholder="blur"
         />
       </section>
     </FadeIn>
