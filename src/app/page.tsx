@@ -24,6 +24,7 @@ function RoleSummary({
   dateFrom: Date;
   dateTo: Date;
   location: string;
+  className?: string;
 }) {
   return (
     <FadeIn
@@ -73,7 +74,7 @@ function Profile() {
       <section className="container mx-auto mt-4 flex max-w-7xl flex-col items-center justify-center gap-16 px-2 pt-2 lg:flex-row lg:gap-32 lg:p-0">
         <div className="flex flex-col items-start gap-8">
           <h1 className="text-5xl font-bold text-white">
-            Hello, I'm{" "}
+            Hello, I&apos;m{" "}
             <span className="bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
               Tom Green
             </span>

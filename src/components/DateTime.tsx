@@ -1,9 +1,12 @@
-const formatDate = (date) => {
-  const options = { year: "numeric", month: "long" };
+const formatDate = (date: Date) => {
+  const options: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "long",
+  };
   return new Intl.DateTimeFormat("en-GB", options).format(date);
 };
 
-const isToday = (date) => {
+const isToday = (date: Date) => {
   const today = new Date();
 
   return (

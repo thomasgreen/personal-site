@@ -2,6 +2,7 @@ import { RootLayout } from "@/components/RootLayout";
 
 import "@/styles/tailwind.css";
 import { Footer } from "@/components/Footer";
+import { ReactNode } from "react";
 
 export const metadata = {
   title: {
@@ -11,7 +12,7 @@ export const metadata = {
   },
 };
 
-export default function Layout({ children }) {
+export default function Layout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className="h-full bg-white text-base antialiased">
       <body className="flex min-h-full flex-col bg-gray-900">
