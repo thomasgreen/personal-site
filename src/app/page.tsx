@@ -12,6 +12,91 @@ import {
 import { motion } from "framer-motion";
 import DateTime from "@/components/DateTime";
 import clsx from "clsx";
+import { GridPattern } from "@/components/GridPattern";
+import { Container } from "@/components/Container";
+
+function Skills() {
+  const skills: string[] = [
+    "PHP",
+    "Laravel",
+    "MySQL",
+    "PHPUnit",
+    "Pest",
+    "JS (ES6)",
+    "Vue.js",
+    "React",
+    "Typescript",
+    "Livewire",
+    "Inertia",
+    "CSS 3",
+    "Tailwind CSS",
+    "Docker",
+    "Git",
+    "Jira",
+  ];
+
+  return (
+    <div className="mt-24 w-full bg-black/30 py-20 text-white sm:mt-32 sm:py-32 lg:mt-56">
+      <Container>
+        <FadeIn className="flex items-center gap-x-8">
+          <h2 className="text-center font-display text-sm font-semibold tracking-wider sm:text-left">
+            Some of my skills
+          </h2>
+          <div className="h-px flex-auto bg-slate-50/50" />
+        </FadeIn>
+        <FadeInStagger faster>
+          <ul
+            role="list"
+            className="divide mt-10 grid grid-cols-2 gap-x-6 gap-y-8 lg:grid-cols-5"
+          >
+            {skills.map((skill) => (
+              <li key={skill}>
+                <FadeIn>
+                  <span className="font-bold">{skill}</span>
+                </FadeIn>
+              </li>
+            ))}
+          </ul>
+        </FadeInStagger>
+      </Container>
+    </div>
+  );
+}
+
+function Highlighted({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
+      {children}
+    </span>
+  );
+}
+
+function CtaButtons() {
+  return (
+    <div className="flex gap-4">
+      <motion.a
+        whileHover={{ y: -4 }}
+        transition={{ type: "spring", stiffness: 300 }}
+        href="mailto:me@tomgreen.dev"
+        className="flex w-auto items-center gap-2 rounded-md bg-white px-4 py-2 text-gray-900 transition ease-linear hover:bg-white/80"
+      >
+        Get in touch
+        <RiMailSendFill />
+      </motion.a>
+      <motion.a
+        whileHover={{ y: -4 }}
+        transition={{ type: "spring", stiffness: 300 }}
+        href="/thomas_green_cv.pdf"
+        rel="noopener"
+        target="_blank"
+        className="flex w-auto items-center gap-2 rounded-md bg-white px-4 py-2 text-gray-900 transition ease-linear hover:bg-white/80"
+      >
+        Download CV
+        <RiFileDownloadFill />
+      </motion.a>
+    </div>
+  );
+}
 
 function RoleSummary({
   title,
@@ -51,85 +136,49 @@ function RoleSummary({
 }
 
 function Profile() {
-  const skills: string[] = [
-    "PHP",
-    "Laravel",
-    "MySQL",
-    "PostgreSQL",
-    "PHPUnit",
-    "Pest",
-    "JS (ES5 & ES6)",
-    "Vue.js",
-    "Typescript",
-    "Livewire",
-    "Inertia",
-    "CSS 3",
-    "Tailwind CSS",
-    "Docker",
-    "Git",
-    "Jira",
-  ];
   return (
-    <FadeIn>
-      <section className="container mx-auto mt-4 flex max-w-7xl flex-col items-center justify-center gap-16 px-2 pt-2 lg:flex-row lg:gap-32 lg:p-0">
-        <div className="flex flex-col items-start gap-8">
-          <h1 className="text-5xl font-bold text-white">
-            Hello, I&apos;m{" "}
-            <span className="bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
-              Tom Green
-            </span>
+    <>
+      <GridPattern
+        className="absolute inset-x-0 -top-14 -z-10 h-[1000px] w-full fill-neutral-950/10 stroke-neutral-50/10 [mask-image:linear-gradient(to_bottom_left,white_5%,transparent_50%)]"
+        yOffset={-96}
+        interactive
+      />
+      <FadeIn className="w-full max-w-7xl">
+        <section className="mx-auto flex w-full flex-col justify-center gap-8 px-2 pt-2 lg:p-0">
+          <Image
+            src={ProfileImage}
+            width={100}
+            height={100}
+            alt="Tom Green"
+            className="rounded-full"
+            priority
+            placeholder="blur"
+          />
+
+          <h1 className="max-w-2xl text-5xl font-bold leading-relaxed text-white">
+            Hello, I&apos;m <Highlighted>Tom Green</Highlighted>, a{" "}
+            <Highlighted>Software Engineer</Highlighted> based in{" "}
+            <Highlighted>Newcastle</Highlighted>
           </h1>
-          <div className="flex flex-wrap gap-2">
-            {skills.map((skill) => (
-              <span
-                key={skill}
-                className="inline-flex select-none items-center rounded-lg bg-slate-700 py-1.5 pe-4 ps-4 text-sm text-white"
-              >
-                {skill}
-              </span>
-            ))}
-          </div>
-          <div className="flex gap-4">
-            <motion.a
-              whileHover={{ y: -4 }}
-              transition={{ type: "spring", stiffness: 300 }}
-              href="mailto:me@tomgreen.dev"
-              className="flex w-auto items-center gap-2 rounded-md bg-white px-4 py-2 text-gray-900 transition ease-linear hover:bg-white/80"
-            >
-              Get in touch
-              <RiMailSendFill />
-            </motion.a>
-            <motion.a
-              whileHover={{ y: -4 }}
-              transition={{ type: "spring", stiffness: 300 }}
-              href="/thomas_green_cv.pdf"
-              rel="noopener"
-              target="_blank"
-              className="flex w-auto items-center gap-2 rounded-md bg-white px-4 py-2 text-gray-900 transition ease-linear hover:bg-white/80"
-            >
-              Download CV
-              <RiFileDownloadFill />
-            </motion.a>
-          </div>
-        </div>
-        <Image
-          src={ProfileImage}
-          width={640}
-          height={640}
-          alt="Tom Green"
-          className="rounded-3xl"
-          priority
-          placeholder="blur"
-        />
-      </section>
-    </FadeIn>
+          <p className="prose prose-xl prose-slate prose-invert max-w-2xl">
+            A Senior Software Engineer specialising in PHP, Laravel, and Vue.js.
+            With over six years of experience, I can lead dynamic development
+            teams and craft high-performance web applications, and reliable,
+            test-driven code. Based in Newcastle-upon-Tyne, I am passionate
+            about continuous learning and delivering top-notch software
+            solutions.
+          </p>
+          <CtaButtons />
+        </section>
+      </FadeIn>
+    </>
   );
 }
 
 function AboutMe() {
   return (
-    <FadeIn className="mt-24">
-      <section className="container prose prose-xl prose-slate prose-invert mx-auto max-w-7xl px-2  lg:columns-2 lg:p-0">
+    <FadeIn className="mt-24" id="about-me">
+      <section className="container prose prose-xl prose-slate prose-invert mx-auto max-w-7xl px-2 lg:columns-2 lg:p-0">
         <p className="font-bold">
           Accomplished Senior Software Engineer with over 6 years of robust
           experience in PHP development, with a keen specialisation in Laravel
@@ -179,9 +228,12 @@ function WorkHistory() {
   ];
 
   return (
-    <FadeIn className="bg-black/30 p-8 lg:p-12 w-full mt-24">
-      <div className="mx-auto flex max-w-7xl flex-col gap-4">
-        <h2 className="text-center text-4xl font-bold text-white lg:text-6xl">
+    <FadeIn
+      className="mt-24 w-full bg-black/30 p-8 lg:p-12"
+      id="professional-experience"
+    >
+      <div className="mx-auto flex max-w-7xl flex-col gap-10">
+        <h2 className="text-center font-display text-4xl font-bold text-white lg:text-6xl">
           Professional Experience
         </h2>
 
@@ -195,7 +247,7 @@ function WorkHistory() {
 
           <FadeInStagger
             faster
-            className="prose prose-slate prose-xl prose-invert col-span-2 "
+            className="prose prose-xl prose-slate prose-invert col-span-2"
           >
             <ul className="list-none p-0">
               {visualsoft.map((item, index) => (
@@ -215,9 +267,9 @@ function WorkHistory() {
 
           <FadeInStagger
             faster
-            className="prose prose-slate prose-xl prose-invert col-span-2 "
+            className="prose prose-xl prose-slate prose-invert col-span-2"
           >
-            <ul className="list-none  p-0">
+            <ul className="list-none p-0">
               {vetuk.map((item, index) => (
                 <li key={index} className="first:mt-0">
                   <FadeIn>{item}</FadeIn>
@@ -240,13 +292,13 @@ function Education() {
   ];
 
   return (
-    <FadeIn className="p-8 lg:p-12 w-full">
-      <div className="mx-auto flex max-w-7xl flex-col gap-4 ">
-        <h2 className="text-center text-4xl font-bold text-white lg:text-6xl">
+    <FadeIn className="w-full p-8 lg:p-12" id="education">
+      <div className="mx-auto flex max-w-7xl flex-col gap-10">
+        <h2 className="text-center font-display text-4xl font-bold text-white lg:text-6xl">
           Education
         </h2>
 
-        <div className="grid gap-6 lg:grid-cols-3  ">
+        <div className="grid gap-6 lg:grid-cols-3">
           <RoleSummary
             title="Computer Science, BSc"
             location="Northumbria University, Newcastle"
@@ -257,9 +309,9 @@ function Education() {
 
           <FadeInStagger
             faster
-            className="prose prose-slate prose-xl prose-invert col-span-2 lg:order-1"
+            className="prose prose-xl prose-slate prose-invert col-span-2 lg:order-1"
           >
-            <ul className="list-none  p-0">
+            <ul className="list-none p-0">
               {university.map((item, index) => (
                 <li key={index} className="first:mt-0">
                   <FadeIn>{item}</FadeIn>
@@ -277,6 +329,7 @@ export default function Home() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-between">
       <Profile />
+      <Skills />
       <AboutMe />
       <WorkHistory />
       <Education />
